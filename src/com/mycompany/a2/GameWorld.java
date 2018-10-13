@@ -1,6 +1,5 @@
 package com.mycompany.a2;
 
-import java.util.Iterator;
 import java.util.Observable;
 import java.util.Vector;
 
@@ -469,6 +468,9 @@ public class GameWorld extends Observable implements IGameWorld{
 	@Override
 	public boolean getSound() {
 		return sound;
+	}
+	public void setSound(boolean sound) {
+		this.sound=sound;
 	}
 
 	@Override

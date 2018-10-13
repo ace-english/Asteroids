@@ -6,16 +6,11 @@ import com.mycompany.a2.commands.*;
 
 import java.util.LinkedList;
 
-import com.codename1.ui.Button;
 import com.codename1.ui.CheckBox;
 import com.codename1.ui.Command;
 import com.codename1.ui.Container;
 import com.codename1.ui.Form;
-import com.codename1.ui.Label;
-import com.codename1.ui.TextField;
 import com.codename1.ui.Toolbar;
-import com.codename1.ui.events.ActionEvent;
-import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 
@@ -41,6 +36,7 @@ public class Game extends Form {
 	    //Sound checkbox
 	    CheckBox soundBox = new CheckBox("Sound");
 	    soundBox.setSelected(true);
+	    
 		
 		//Declare toolbar
 	    Toolbar toolbar = new Toolbar();	
@@ -120,7 +116,6 @@ public class Game extends Form {
 		cmds.add(decreaseSpeedCmd);
 		cmds.add(firePsCmd);
 		cmds.add(fireNPSCmd);
-		cmds.add(tickCmd);
 		cmds.add(turnLeftCmd);
 		cmds.add(turnRightCmd);
 		cmds.add(aimRightCmd);
@@ -134,6 +129,7 @@ public class Game extends Form {
 		cmds.add(collisionAsteroidCmd);
 		cmds.add(asteroidCollisionCmd);
 		cmds.add(playerShotCmd);
+		cmds.add(tickCmd);
 		
 		
 		

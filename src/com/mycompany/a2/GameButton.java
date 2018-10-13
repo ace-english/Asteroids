@@ -9,7 +9,7 @@ public class GameButton extends Button {
 		super(name);
 		getAllStyles().setFgColor(ColorUtil.rgb(85,0,85));
 		
-		getAllStyles().setPadding(0, 0, 0, 0);
+		getAllStyles().setPadding(1, 1, 0, 0);
 	}
 	
 	public GameButton() {
