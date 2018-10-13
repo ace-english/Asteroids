@@ -11,20 +11,13 @@ public class Util {
 	public static final int MAX_HEADING = 360;
 	public static final int MAX_SPEED = 10;
 	
+	//pseudo constants declared when Map is rendered
 	private static int MAX_WIDTH;
 	private static int MAX_HEIGHT;
 	
-	/*
-	static {
-		MAX_WIDTH=0;
-		MAX_HEIGHT=0;
-	}*/
-	
 	public static void init(Component map) {
-		System.out.println("Height: "+ MAX_HEIGHT + " Width: "+MAX_HEIGHT);
 		MAX_WIDTH=map.getWidth();
 		MAX_HEIGHT=map.getHeight();
-		System.out.println("Height: "+ MAX_HEIGHT + " Width: "+MAX_HEIGHT);
 	}
 	
 	public static int getMaxHeight() {

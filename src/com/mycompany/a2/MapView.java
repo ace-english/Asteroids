@@ -25,6 +25,7 @@ public class MapView extends Container implements Observer {
 		GameWorldProxy gw = (GameWorldProxy) data;
 		map.setText(gw.printAll());
 		this.repaint();
+		System.out.println(gw.printAll());
 	}
 
 }

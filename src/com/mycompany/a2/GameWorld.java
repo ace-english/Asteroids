@@ -31,7 +31,7 @@ public class GameWorld extends Observable implements IGameWorld{
 	 */
 	public PlayerShip getPS() {
 		if(findAll(Util.ObjectType.PlayerShip).isEmpty()) {
-			System.err.println("No PS found");
+			//System.err.println("No PS found");
 			return null;
 		}
 		return PlayerShip.getPS();

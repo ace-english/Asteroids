@@ -36,9 +36,18 @@ public class Game extends Form {
 		this.setLayout(new BorderLayout());
 		Container cmdWrapper = new Container();
 		cmdWrapper.setLayout(new BoxLayout(BoxLayout.Y_AXIS));
+
+	    
+	    //Sound checkbox
+	    CheckBox soundBox = new CheckBox("Sound");
+	    soundBox.setSelected(true);
+		
+		//Declare toolbar
+	    Toolbar toolbar = new Toolbar();	
+	    this.setToolbar(toolbar);
+	    toolbar.addComponentToSideMenu(soundBox);
 		
 		//declare all the commands we shall be using
-	    
 	    AddPSCommand addPsCmd = new AddPSCommand(gw);
 	    FirePSCommand firePsCmd = new FirePSCommand(gw);
 	    AddAsteroidCommand addAsteroidCmd = new AddAsteroidCommand(gw);
@@ -63,6 +72,11 @@ public class Game extends Form {
 	    TickCommand tickCmd = new TickCommand(gw);
 	    QuitCommand quitCmd = new QuitCommand(this);
 	    AboutCommand aboutCmd = new AboutCommand();
+	    CommandsCommand commandsCmd = new CommandsCommand();
+	    SaveGameCommand saveCmd = new SaveGameCommand(gw);
+	    NewGameCommand newGameCmd = new NewGameCommand(gw);
+	    UndoCommand undoCommand = new UndoCommand(gw);
+	    
 		
 		//=====add key listeners========
 	    //< - aim left
@@ -97,7 +111,7 @@ public class Game extends Form {
 	
 		
 		//add commands that should have buttons to list
-		LinkedList<Command> cmds = new LinkedList();
+		LinkedList<Command> cmds = new LinkedList<Command>();
 		cmds.add(addStationCmd);
 		cmds.add(addNPSCmd);
 		cmds.add(addAsteroidCmd);
@@ -107,10 +121,24 @@ public class Game extends Form {
 		cmds.add(firePsCmd);
 		cmds.add(fireNPSCmd);
 		cmds.add(tickCmd);
+		cmds.add(turnLeftCmd);
+		cmds.add(turnRightCmd);
+		cmds.add(aimRightCmd);
+		cmds.add(aimLeftCmd);
+		cmds.add(restockCmd);
+		cmds.add(hyperspaceJumpCmd);
+		cmds.add(killNPSCmd);
+		cmds.add(killAsteroidCmd);
+		cmds.add(collisionAsteroidNPSCmd);
+		cmds.add(collisionNPSCmd);
+		cmds.add(collisionAsteroidCmd);
+		cmds.add(asteroidCollisionCmd);
+		cmds.add(playerShotCmd);
+		
 		
 		
 		//allocate buttons for commands
-		LinkedList<GameButton> buttons = new LinkedList();
+		LinkedList<GameButton> buttons = new LinkedList<GameButton>();
 		for(int i=0; i<cmds.size(); i++) {
 			buttons.add(new GameButton());
 		}
@@ -139,25 +167,37 @@ public class Game extends Form {
 		gw.addObserver(mv);
 		gw.init();	
 		
+
+		//reset list of buttons to use for side menu
+		buttons.clear();
 		
-		//reset lists to use for side menu
+		//allocate buttons for commands
+		for(int i=0; i<cmds.size(); i++) {
+			buttons.add(new GameButton());
+		}
+		
+		//add buttons in list to side menu
+		//Assign each button a command from the list
+		for(int i=0; i<cmds.size(); i++) {
+			button=buttons.get(i);
+			cmd=cmds.get(i);
+			button.setCommand(cmd);
+	    	toolbar.addComponentToSideMenu(button);
+		}
+		
+		
+		//reset lists to use for overflow menu
 		cmds.clear();
 		buttons.clear();
 		
-
-	    
-	    //Sound checkbox
-	    CheckBox soundBox = new CheckBox("Sound");
-	    soundBox.setSelected(true);
-		
-		//Declare toolbar
-	    Toolbar toolbar = new Toolbar();	
-	    this.setToolbar(toolbar);
-	    toolbar.addComponentToSideMenu(soundBox);
 	    
 	    //same show different star
 	    cmds.add(quitCmd);
 	    cmds.add(aboutCmd);
+	    cmds.add(commandsCmd);
+	    cmds.add(newGameCmd);
+	    cmds.add(saveCmd);
+	    cmds.add(undoCommand);
 	    
 	    //assign commands to fresh buttons
 	    for(int i=0; i<cmds.size(); i++) {
@@ -165,20 +205,7 @@ public class Game extends Form {
 	    	buttons.get(i).setCommand(cmds.get(i));
 	    }
 	    
-	    //for the placeholder buttons with no commands
-	    buttons.add(new GameButton("New"));
-	    buttons.add(new GameButton("Save"));
-	    buttons.add(new GameButton("Undo"));
-	    buttons.add(new GameButton("Commands"));
-	    
-	    //add list of buttons to toolbar's side menu
-	    for(GameButton temp: buttons) {
-	    	toolbar.addComponentToSideMenu(temp);
-	    }
-	    
-	    //TODO:
-	    
-	    //add list of buttons to toolbar's side menu
+	    //add list of buttons to toolbar's overflow menu
 	    for(Command temp: cmds) {
 	    	toolbar.addCommandToOverflowMenu(temp);
 	    }
