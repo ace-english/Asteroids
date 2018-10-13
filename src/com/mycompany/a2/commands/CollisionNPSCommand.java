@@ -9,7 +9,7 @@ public class CollisionNPSCommand extends Command {
 	private GameWorld gw;
 
 	public CollisionNPSCommand(GameWorld gw) {
-		super("Collide with NPS");
+		super("Asteroid collides with NPS");
 		this.gw=gw;
 	}
 	

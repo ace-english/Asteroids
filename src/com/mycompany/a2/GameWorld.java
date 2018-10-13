@@ -317,8 +317,20 @@ public class GameWorld extends Observable implements IGameWorld{
 	 */
 	public void killAsteroid(){
 		PlayerMissile missile=(PlayerMissile) findRandom(Util.ObjectType.PlayerMissile);
-		Asteroid asteroid=(Asteroid) findRandom(Util.ObjectType.Asteroid);
-		killTarget(missile, asteroid);
+		Asteroid target=(Asteroid) findRandom(Util.ObjectType.Asteroid);
+		if(missile==null) {
+			System.err.println("Error: no missilies have been fired.");
+		}
+		if(target == null) {
+			System.err.println("Error: invalid target.");
+		}
+		if (target!=null&&missile!=null){
+			score+=((Asteroid) target).getSize()*10;
+			objectList.remove(target);
+			objectList.remove(missile);
+			this.setChanged();
+			this.notifyObservers(new GameWorldProxy(this));
+		}
 	}
 	/**
 	 * Player shoots an NPS.
@@ -326,8 +338,20 @@ public class GameWorld extends Observable implements IGameWorld{
 	 */
 	public void killNPS() {
 		PlayerMissile missile=(PlayerMissile) findRandom(Util.ObjectType.PlayerMissile);
-		NPS nps=(NPS) findRandom(Util.ObjectType.NPS);
-		killTarget(missile, nps);
+		NPS target=(NPS) findRandom(Util.ObjectType.NPS);
+		if(missile==null) {
+			System.err.println("Error: no missilies have been fired.");
+		}
+		if(target == null) {
+			System.err.println("Error: invalid target.");
+		}
+		if (target!=null&&missile!=null){
+			score+=((NPS) target).getSize()*10;
+			objectList.remove(target);
+			objectList.remove(missile);
+			this.setChanged();
+			this.notifyObservers(new GameWorldProxy(this));
+		}
 	}
 	/**
 	 * Player has been shot by NPS
@@ -471,6 +495,8 @@ public class GameWorld extends Observable implements IGameWorld{
 	}
 	public void setSound(boolean sound) {
 		this.sound=sound;
+		this.setChanged();
+		this.notifyObservers(new GameWorldProxy(this));
 	}
 
 	@Override

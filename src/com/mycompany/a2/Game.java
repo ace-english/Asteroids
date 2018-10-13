@@ -11,6 +11,8 @@ import com.codename1.ui.Command;
 import com.codename1.ui.Container;
 import com.codename1.ui.Form;
 import com.codename1.ui.Toolbar;
+import com.codename1.ui.events.ActionEvent;
+import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 
@@ -36,6 +38,19 @@ public class Game extends Form {
 	    //Sound checkbox
 	    CheckBox soundBox = new CheckBox("Sound");
 	    soundBox.setSelected(true);
+	    soundBox.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent evt) {
+				System.out.println("Sound toggled");
+		    	if(soundBox.isSelected())
+		    		gw.setSound(true);
+		    	else
+		    		gw.setSound(false);
+				
+			}
+	    		
+	    });
 	    
 		
 		//Declare toolbar
