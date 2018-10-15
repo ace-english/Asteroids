@@ -39,7 +39,7 @@ public class PointsView extends Container implements Observer {
 	}
 	@Override
 	public void update(Observable observable, Object data) {
-		GameWorldProxy gw = (GameWorldProxy) data;
+		IGameWorld gw = (GameWorldProxy) data;
 		points.setText(Integer.toString(gw.getPoints()));
 		ammo.setText(Integer.toString(gw.getAmmo()));
 		time.setText(Integer.toString(gw.getTime()));

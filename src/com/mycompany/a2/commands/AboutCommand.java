@@ -1,6 +1,8 @@
 package com.mycompany.a2.commands;
 
 import com.codename1.ui.Command;
+import com.codename1.ui.Dialog;
+import com.codename1.ui.Display;
 import com.codename1.ui.events.ActionEvent;
 
 public class AboutCommand extends Command {
@@ -10,8 +12,8 @@ public class AboutCommand extends Command {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("This in an asteroids game!\n"
-				+ "Goal: Obtain as many points as possible in as short a time.");
+		
+	    Dialog.show("About", "Ace English\nCSC 133 Section 4\nVersion 2.0", "OK", "Close");
 	}
 
 }

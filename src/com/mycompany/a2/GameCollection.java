@@ -63,84 +63,21 @@ public class GameCollection implements ICollection {
 	public GameObject get(int i) {
 		return objectList.get(i);
 	}
-	
-	/*
-    
-	@Override
-	public boolean addAll(Collection<? extends GameObject> collection) {
-		boolean nofail =true;
-		for(Object item:collection) {
-			if(item instanceof GameObject) {
-				add((GameObject) item);
-			}
-			else {
-				System.err.println("Error: attempted to add a non-GameObject");
-				nofail=false;
+
+	public void moveAll() {
+		GameObject item;
+		for(int i=0; i<objectList.size(); i++) {
+			item=objectList.get(i);
+			if(item instanceof IMoveable) {
+				if(((MoveableObject) objectList.get(i)).move()==false) {	//if move function returns false, destroy it
+					objectList.remove(i);
+					i--;
+				}
 			}
 		}
-		return nofail;
-	}
-
-	@Override
-	public void clear() {
-		objectList.clear();
 		
 	}
-
-	@Override
-	public boolean contains(Object object) {
-		return objectList.contains(object);
-	}
-
-	@Override
-	public boolean containsAll(Collection collection) {
-		return objectList.containsAll(collection);
-	}
-
-	@Override
-	public boolean isEmpty() {
-		return objectList.isEmpty();
-	}
-
-	@Override
-	public boolean removeAll(Collection collection) {
-		return objectList.removeAll(collection);
-	}
-
-	@Override
-	public boolean retainAll(Collection collection) {
-		return objectList.retainAll(collection);
-	}
-
-	@Override
-	public int size() {
-		return objectList.size();
-	}
-
-	@Override
-	public Object[] toArray() {
-		return objectList.toArray();
-	}
-
-	@Override
-	public Object[] toArray(Object[] array) {
-		return objectList.toArray(array);
-	}
-
-	@Override
-	public boolean add(GameObject object) {
-		return objectList.add(object);
-	}
-
-	@Override
-	public boolean remove(Object object) {
-		return objectList.remove(object);
-				
-	}
-
-	public GameObject get(int i) {
-		return objectList.get(i);
-	}
-	*/
+	
+	
     
 }

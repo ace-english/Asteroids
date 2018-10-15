@@ -313,7 +313,7 @@ public class GameWorld extends Observable implements IGameWorld{
 	}
 	/**
 	 * Player shoots an asteroid.
-	 * Return score increase.
+	 * score increase.
 	 */
 	public void killAsteroid(){
 		PlayerMissile missile=(PlayerMissile) findRandom(Util.ObjectType.PlayerMissile);
@@ -334,7 +334,7 @@ public class GameWorld extends Observable implements IGameWorld{
 	}
 	/**
 	 * Player shoots an NPS.
-	 * Returns score increase
+	 * score increase
 	 */
 	public void killNPS() {
 		PlayerMissile missile=(PlayerMissile) findRandom(Util.ObjectType.PlayerMissile);
@@ -451,16 +451,7 @@ public class GameWorld extends Observable implements IGameWorld{
 	 */
 	public void tick() {
 		time++;
-		GameObject item;
-		for(int i=0; i<objectList.size(); i++) {
-			item=objectList.get(i);
-			if(item instanceof IMoveable) {
-				if(((MoveableObject) objectList.get(i)).move()==false) {	//if move function returns false, destroy it
-					objectList.remove(i);
-					i--;
-				}
-			}
-		}
+		objectList.moveAll();
 		this.setChanged();
 		this.notifyObservers(new GameWorldProxy(this));
 	}

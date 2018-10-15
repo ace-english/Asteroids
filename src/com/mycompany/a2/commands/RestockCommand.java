@@ -9,7 +9,7 @@ public class RestockCommand extends Command {
 	private GameWorld gw;
 
 	public RestockCommand(GameWorld gw) {
-		super("Fire PS");
+		super("Restock");
 		this.gw=gw;
 	}
 	
